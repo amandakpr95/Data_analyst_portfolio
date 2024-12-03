@@ -1,0 +1,43 @@
+## In this scenario, I am a junior data analyst working for a hotel booking 
+## company. I have been asked to clean a .csv file that was created after 
+## querying a database to combine two different tables from different hotels. 
+## In order to learn more about this data, I need to preview the data's 
+## structure and clean the data in preparation for analysis
+
+install.packages("tidyverse")   #install packages to work with the data
+install.packages("skimr")
+install.packages("janitor")
+library(tidyverse)              #load packages
+library(skimr)
+library(janitor)
+bookings_df <- read_csv("hotel_bookings.csv") #load the .csv file into R
+skim_without_charts(bookings_df) # quickly view the data to get understanding
+
+## Let's say I am priamrily interested in the following variables: 'hotel', 
+## 'is_canceled', and 'lead_time'. So let's create a new data frame with just
+## those variables.
+
+trimmed_df <- bookings_df %>%
+  select('hotel', 'is_canceled', 'lead_time')
+
+## Just to be crystal clear about the 'hotel' variable, I'm going to rename it.
+
+trimmed_df %>%
+  rename(hotel_type = hotel)
+
+View(bookings_df)
+
+## To make the original df a little more simple, I am going to combine the two 
+## columns 'arrival_date_year' and 'arrival_date_moth' into one 'arrival_month_year'
+
+bookings_df %>%
+  unite(arrival_month_year, c("arrival_date_month", "arrival_date_year"))
+
+## Let's say that instead of viewing the guests separately as they are now, we 
+## wanted to know all the guests for a given reservation. I would create a new 
+## column with that information
+
+bookings_df_2 <- bookings_df %>%
+  mutate(total_guests = adults + children + babies)
+
+colnames(bookings_df_2)
