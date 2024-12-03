@@ -41,3 +41,13 @@ bookings_df_2 <- bookings_df %>%
   mutate(total_guests = adults + children + babies)
 
 colnames(bookings_df_2)
+
+## Now if we wanted to know the total number of canceled bookings and the average
+## lead time for booking, I could create two more columns to calculate that.
+
+bookings_df_3 <- bookings_df %>%
+  select(is_canceled, lead_time) %>%
+  mutate(number_canceled = sum(is_canceled)) %>%
+  mutate(average_lead_time = mean(lead_time))
+
+head(bookings_df_3)
