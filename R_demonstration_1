@@ -50,4 +50,33 @@ bookings_df_3 <- bookings_df %>%
   mutate(number_canceled = sum(is_canceled)) %>%
   mutate(average_lead_time = mean(lead_time))
 
-head(bookings_df_3)
+head(bookings_df_3) 
+
+## Let's say we wanted to arrange the data by most lead time to least lead time
+## in order to focus on the bookings made far in advance. 
+
+arrange(bookings_df, -lead_time)   # we can see that the largest lead time is 737
+max(bookings_df$lead_time)         # we can also quickly return the max and min
+min(bookings_df$lead_time)         # lead time with the following functions
+
+## If we wanted to know the average lead time, for example, to know when to run
+## promotions for the hotel, we can do that too.
+
+mean(bookings_df$lead_time)        # the average lead time is 104
+
+## If we then wanted to see the average lead time by city we can run the following
+
+city_bookings_df <- filter(bookings_df, bookings_df$hotel == "City Hotel")  #here we create a new df
+mean(city_bookings_df$lead_time) # the average lead time for city hotels is 109.7
+
+## Now if we wanted to compare the city vs the resort hotel lead times and get more 
+## information on the lead times we could do the following:
+
+bookings_summary <-                                   # create a new df
+  bookings_df %>%                                     # with info from the first df
+  group_by(hotel) %>%                                 # organize it by hotel type
+  summarize(average_lead_time = mean(lead_time),      # summarize the average lead time
+            min_lead_time = min(lead_time),           # the min lead time
+            max_lead_time = max(lead_time))           # and the max lead time
+
+head(bookings_summary)                                # view the results! city lead times are longer on average than resort lead times.
