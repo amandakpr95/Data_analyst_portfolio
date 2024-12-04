@@ -1,0 +1,23 @@
+## Here I demonstrate some commonly used functions for data visualization using 
+## commonly used R packages, "tidyverse" and "ggplot2", as well as the commonly used
+## dataset, "palmerpenguins"
+
+install.packages("tidyverse")           # installing the packages
+install.packages("ggplot2")
+library("ggplot2")                      # loading the packages
+library("palmerpenguins")
+
+ggplot(data = penguins) +               
+  geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + 
+  geom_smooth(mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
+  labs(title = "Palmer Penguins: Body Mass vs. Flipper Length", subtitle = "Sample of Three Penguin Species", 
+       caption = "Data collected by Dr. Kristen Gorman, 2007-2009") + 
+  annotate("text", x = 220, y = 3500, label = "The Gentoos are the largest")
+
+## "ggplot" tells R what data we're using
+## "geom_point" tells R to make a scatter plot, i.e. point
+## "mapping = aes" determines where we map the variables in the plot.
+## "geom_smooth" creates a trend line through our points, highlighting correlative results
+## "labs" adds labels to the graph, like the title, subtitle, and caption
+## "annotate" creates the floating text "Gentoos are the largest" over the graph.
+
