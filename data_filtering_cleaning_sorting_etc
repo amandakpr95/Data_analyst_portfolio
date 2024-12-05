@@ -80,3 +80,45 @@ bookings_summary <-                                   # create a new df
             max_lead_time = max(lead_time))           # and the max lead time
 
 head(bookings_summary)                                # view the results! city lead times are longer on average than resort lead times.
+
+##Now I'll want to share these insights with my stakeholders, so I'll create a data viz with ggplot2
+
+ggplot(data = bookings_summary) +
+  geom_col(mapping = aes(fill = hotel, x = hotel, y = average_lead_time))
+
+## My stakeholder then asks me which distribution channel is best for attracting users.
+## I can create another graph to highlight any trends. 
+
+ggplot(data = bookings_df) +                            # determines what df to pull data from
+  geom_bar(mapping = aes(x = distribution_channel))     # makes a bar graph with the distribution channel on the x axis and the number of bookings on the y axis
+
+## We can see here that the distribution channel with the highest number of bookings is "TA/TO".
+## My stakeholder is then interested if a deposit affected these results.
+
+ggplot(data = bookings_df) +                            # determines what df to pull data from
+  geom_bar(mapping = aes(x = distribution_channel)) +   # makes a bar graph, as described above
+  facet_wrap(~deposit_type) +                           # creates three bar graphs with deposit type as a third variable
+  theme(axis.text.x = element_text(angle = 45))         # angles the text on the x axis at a 45 degree angle for better readability
+
+## We can see that the "No Deposit" group had the highest number of bookings for all distribution channels. 
+## Suppose now my stakeholder wants to run a family-friendly promotion targeting key market segments. 
+## The stakeholder wants to know if hotel type affects which market segment books. 
+## Therefore I can create a bar char showing each hotel type and market segment.
+
+ggplot(data = bookings_df) + 
+  geom_bar(mapping = aes(x = hotel)) +
+  facet_wrap(~market_segment) +
+  theme(axis.text.x = element_text(angle = 45))
+
+## Now my stakeholder has a better idea of the market. They decide to advertise a promotion to families
+## that make online bookings for city hotels.
+## They ask to see the relationship between lead time and families traveling for online bookings at city hotels.
+
+onlineta_city_hotels <- bookings_df %>%              # create a new df 
+  filter(hotel=="City Hotel") %>%                    # filter for only "City Hotels" and
+  filter(market_segment=="Online TA")                # filter for only "Online TA"
+
+View(onlineta_city_hotels)
+
+ggplot(data = onlineta_city_hotels) + 
+  geom_point(mapping = aes(x = children, y = lead_time))
