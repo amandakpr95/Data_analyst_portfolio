@@ -1,0 +1,29 @@
+
+-- How many wildfires took place in the USA per year between 1995 and 2015?
+SELECT FIRE_YEAR, COUNT(*) AS fires_per_year
+FROM Fires
+WHERE FIRE_YEAR BETWEEN 1995 AND 2015
+GROUP BY FIRE_YEAR
+ORDER BY FIRE_YEAR ASC;
+
+-- Which year was there the most wildfires?
+SELECT FIRE_YEAR, COUNT(*) AS fires_per_year
+FROM Fires
+WHERE FIRE_YEAR BETWEEN 1995 AND 2015
+GROUP BY FIRE_YEAR
+ORDER BY fires_per_year DESC;
+
+-- Where are these wildfires taking place?
+SELECT State, COUNT(*) AS wildfire_count
+FROM fires
+GROUP BY State
+ORDER BY wildfire_count DESC;
+
+-- Why are these wildfires taking place? 
+SELECT STAT_CAUSE_DESCR, COUNT(*) AS wildfire_cause
+FROM Fires
+GROUP BY STAT_CAUSE_DESCR
+ORDER BY wildfire_cause DESC;
+
+-- Export the data as a .csv file for Tableau data visualizations
+SELECT * FROM Fires;
