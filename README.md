@@ -67,3 +67,14 @@ Most often the cause of wildfires between 1995 and 2015 was **Debris Burning**.
 We can create a data visualization demonstrating this using Tableau!
 
 ## Tableau Demonstration
+
+Using Tableau, I created this dashboard showing the findings from our SQL queries. 
+
+
+![Fires in the United States between 1995 and 2015](https://github.com/amandakpr95/Data_analyst_portfolio/blob/main/Fires_Dashboard.png)
+
+As you can see, in the top line graph, fires have not increased or decreased overall across the 10 year period. However, 2006 and 2007 two years with a lot of fires. 
+
+Additionally, we can see with the bottom left map that CA, GA, and TX had the most fires during this period. 
+
+Finally, the bubble graph in the bottom right depicts the largest cause of fires in the largest bubble. The most common cause of fires between 1995 and 2015 was burning debris. 
