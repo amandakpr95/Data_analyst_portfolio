@@ -72,7 +72,7 @@ We can create a data visualization demonstrating this using Tableau!
 Using Tableau, I created this dashboard showing the findings from our SQL queries. 
 
 
-![Fires in the United States between 1995 and 2015](https://github.com/amandakpr95/Data_analyst_portfolio/blob/main/Fires_Dashboard.png)
+![Fires in the United States between 1995 and 2015](https://github.com/amandakpr95/Data_analyst_portfolio/blob/main/Tableau_Demo-Fires_Dashboard.png)
 
 As you can see, in the top line graph, fires have not increased or decreased overall across the 10 year period. However, 2006 and 2007 two years with a lot of fires. 
 
